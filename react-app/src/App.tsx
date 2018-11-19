@@ -12,15 +12,20 @@ import TimerView from './components/TimerView';
 class AppState {
   // @ts-ignore
   @observable timer = 0;
+  timerId: any;
 
   constructor() {
-      setInterval(() => {
-          this.timer += 1;
-      }, 1000);
+    this.timerId = setInterval(() => {
+      this.timer += 1;
+    }, 1000);
   }
 
   resetTimer() {
-      this.timer = 0;
+    this.timer = 0;
+  }
+
+  stopTimer() {
+    clearInterval(this.timerId)
   }
 }
 
@@ -34,9 +39,6 @@ class App extends React.Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.tsx</code> and save to reload.
-        </p>
         <Hello name="TypeScript" enthusiasmLevel={10} />
         <TimerView appState={appState} />
       </div>

@@ -15,9 +15,9 @@ class Hello extends React.Component<IProps, object> {
 
     return (
       <div className="hello">
-        <div className="greeting">
+        <h1 className="greeting">
           Hello {name + getExclamationMarks(enthusiasmLevel)}
-        </div>
+        </h1>
       </div>
     );
   }
