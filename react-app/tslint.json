@@ -9,6 +9,8 @@
   },
   "rules": {
     "member-access": [true, "no-public"],
-    "max-classes-per-file": [true, 5, "exclude-class-expressions"]
+    "member-ordering": [true, {"order": "fields-first"}],
+    "max-classes-per-file": [true, 5, "exclude-class-expressions"],
+    "no-console": false
   }
 }
