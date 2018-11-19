@@ -1,14 +1,18 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import * as React from 'react'
+import * as ReactDOM from 'react-dom'
 
-import App from './App';
-import './index.css';
-import registerServiceWorker from './registerServiceWorker';
+import App from './App'
+import './index.css'
 
+import registerServiceWorker from './registerServiceWorker'
+import { createStores } from './stores/createStore'
+
+const rootStore = createStores()
 
 // Type assertions
 ReactDOM.render(
-  <App />,
+  <App store={rootStore} />,
   document.getElementById('root') as HTMLElement
-);
-registerServiceWorker();
+)
+
+registerServiceWorker()

@@ -1,29 +1,49 @@
-import { observer } from 'mobx-react';
-import DevTools from 'mobx-react-devtools';
+// import { observer } from 'mobx-react'
 import * as React from 'react';
 
-@observer 
-// @ts-ignore
-class TimerView extends React.Component<{appState: AppState}, {}> {
-  onReset = () => {
-    this.props.appState.resetTimer()
+interface ITimerState {
+  count: number
+  id: any
+}
+
+// @observer 
+class TimerView extends React.Component<{}, ITimerState> {
+  state = {
+    count: 0,
+    id: 0
   }
 
+  componentDidMount() {
+    this.startTimer()
+  }
+
+  startTimer () {
+    let count = this.state.count
+    const id = setInterval(() => {
+      count += 1
+      this.setState({ count })
+    }, 1000)
+    this.setState({ id })
+  }
+
+  onReset = () =>  this.setState({ count: 0 })
+
   onStop = () => {
-    this.props.appState.stopTimer()
+    const id = clearInterval(this.state.id)
+    this.setState({ id })
   }
 
   render() {
+    const { count } = this.state
     return (
       <div>
         <h2>This is a Time Viewer component for simple usage of @observer in mobx-react</h2>
         <button onClick={this.onReset} style={{cursor: 'pointer', marginRight: '1em'}}>
-          Seconds passed: {this.props.appState.timer}
+          Seconds passed: {count}
         </button>
         <button onClick={this.onStop} style={{cursor: 'pointer'}}>
           Stop timer
         </button>
-        <DevTools />
       </div>
     )
   }

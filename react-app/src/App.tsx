@@ -1,5 +1,5 @@
-import { observable } from 'mobx';
-import * as React from 'react';
+import { observer } from 'mobx-react'
+import * as React from 'react'
 
 import './App.css';
 
@@ -8,31 +8,18 @@ import logo from './logo.svg';
 import Hello from './components/Hello'
 import TimerView from './components/TimerView';
 
-
-class AppState {
-  // @ts-ignore
-  @observable timer = 0;
-  timerId: any;
-
-  constructor() {
-    this.timerId = setInterval(() => {
-      this.timer += 1;
-    }, 1000);
+@observer
+class App extends React.Component<any, any> {
+  renderDevTool() {
+    if (process.env.NODE_ENV !== 'production') {
+      const DevTools = require('mobx-react-devtools').default
+      return <DevTools />
+    }
+    return null
   }
 
-  resetTimer() {
-    this.timer = 0;
-  }
-
-  stopTimer() {
-    clearInterval(this.timerId)
-  }
-}
-
-const appState = new AppState()
-
-class App extends React.Component {
   render() {
+    const { todo } = this.props.store
     return (
       <div className="App">
         <header className="App-header">
@@ -40,7 +27,9 @@ class App extends React.Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <Hello name="TypeScript" enthusiasmLevel={10} />
-        <TimerView appState={appState} />
+        <p>Test Todo List: {todo.todos[0]}</p>
+        <TimerView />
+        {this.renderDevTool()}
       </div>
     );
   }
