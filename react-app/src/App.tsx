@@ -6,7 +6,6 @@ import './App.css';
 import logo from './logo.svg';
 
 import Hello from './components/Hello'
-import TimerView from './components/TimerView';
 
 @observer
 class App extends React.Component<any, any> {
@@ -28,7 +27,6 @@ class App extends React.Component<any, any> {
         </header>
         <Hello name="TypeScript" enthusiasmLevel={10} />
         <p>Test Todo List: {todo.todos[0]}</p>
-        <TimerView />
         {this.renderDevTool()}
       </div>
     );
