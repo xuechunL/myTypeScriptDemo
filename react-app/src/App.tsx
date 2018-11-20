@@ -1,9 +1,9 @@
 import { observer } from 'mobx-react'
 import * as React from 'react'
 
-import './App.css';
+import './App.css'
 
-import logo from './logo.svg';
+import logo from './logo.svg'
 
 import Hello from './components/Hello'
 
@@ -29,8 +29,8 @@ class App extends React.Component<any, any> {
         <p>Test Todo List: {todo.todos[0]}</p>
         {this.renderDevTool()}
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App

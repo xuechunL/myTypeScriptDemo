@@ -8,9 +8,11 @@
     ]
   },
   "rules": {
+    "ordered-imports": false,
+    "member-ordering": false,
     "member-access": [true, "no-public"],
-    "member-ordering": [true, {"order": "fields-first"}],
     "max-classes-per-file": [true, 5, "exclude-class-expressions"],
-    "no-console": false
+    "no-console": false,
+    "semicolon": [true, "never"]
   }
 }
